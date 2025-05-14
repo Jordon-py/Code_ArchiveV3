@@ -1,0 +1,83 @@
+/* Sidebar.css — Fixed Left‑Side Navbar */
+
+/* 1. Design Tokens */
+:root {
+  --sidebar-bg: #24292e;
+  --sidebar-fg: #fff;
+  --sidebar-width: clamp(12rem, 15vw, 16rem);
+  --nav-padding: clamp(1rem, 2vw, 1.5rem);
+  --link-gap: clamp(0.75rem, 1vw, 1rem);
+  --transition-duration: 0.3s;
+  --breakpoint-sm: 30rem; /* 480px */
+}
+
+/* 2. Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;                 /* full viewport height */
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  color: var(--sidebar-fg);
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--nav-padding);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* 3. Logo Area */
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: var(--nav-padding);
+}
+.sidebar__logo img {
+  max-height: 3rem;
+  width: auto;
+}
+
+/* 4. Links List */
+.sidebar__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--link-gap);
+  flex: 1;                      /* stretch to fill vertical space */
+  overflow-y: auto;             /* scroll if too many items */
+  padding-inline: var(--nav-padding);
+}
+
+/* 5. Link Items */
+.sidebar__item {
+  list-style: none;
+}
+.sidebar__link {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--sidebar-fg);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background var(--transition-duration);
+}
+.sidebar__link:hover,
+.sidebar__link:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+/* 6. Responsive Shrink (Optional) */
+@media (max-width: var(--breakpoint-sm)) {
+  .sidebar {
+    width: 4rem;               /* collapse to icons-only width */
+  }
+  .sidebar__logo,
+  .sidebar__links {
+    align-items: center;       /* center icons if you replace text with icons */
+  }
+  .sidebar__link {
+    font-size: 0;              /* hide text, show only icons*/
+  }
+}
